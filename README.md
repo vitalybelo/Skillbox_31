@@ -69,7 +69,7 @@ MatrixGraph, хранящий граф в виде матрицы смежнос
 
 Пример кода:
 
-`class IGraph {
+class IGraph {
     public:
     virtual ~IGraph() {}
     IGraph() {};
@@ -83,7 +83,7 @@ MatrixGraph, хранящий граф в виде матрицы смежнос
     // Для конкретной вершины метод выводит в вектор “вершины” все вершины, из которых можно дойти по ребру в данную 
     virtual void GetPrevVertices(int vertex, std::vector<int> &vertices) const = 0;
 };
-`
+
 
 ### Чек-лист для проверки задачи
 
