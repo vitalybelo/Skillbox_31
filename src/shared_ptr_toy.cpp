@@ -21,7 +21,7 @@ shared_ptr_toy& shared_ptr_toy::operator=(const shared_ptr_toy & other) {
             if (*count == 1) {
                 delete object;  // удаляем объект
                 delete count;
-            } else (*count)--;  // на одну копию меньше
+            } else (*count)--;  // станет на одну копию меньше
         }
         // присваивание с учетом уже имеющегося количества копий
         object = other.object;
@@ -63,10 +63,4 @@ shared_ptr_toy shared_ptr_toy::make_shared_toy(const std::string & name) {
     shared_ptr_toy ptr(name);
     return ptr;
 }
-
-
-
-
-
-
 

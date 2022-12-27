@@ -4,6 +4,10 @@
 #include "shared_ptr_toy.h"
 using namespace std;
 
+/**
+ * реализация умного указателя приблизительно похожего
+ * инициализация через конструкторы или через статическую функцию make_shared_toy
+ */
 void solution_1() {
 
     Toy* pt1 = new Toy("ball");
