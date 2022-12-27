@@ -1,64 +1,70 @@
 #include "shared_ptr_toy.h"
 #include <iostream>
 
-[[maybe_unused]] shared_ptr_toy::shared_ptr_toy(const std::string & name) {
-    object = new Toy(name);
-    count = 0;
-}
-
-shared_ptr_toy::shared_ptr_toy(Toy *toy) {
-    object = toy;
-    count = 0;
-}
-
-shared_ptr_toy::shared_ptr_toy()  {
-    object = new Toy("noname");
-    count = 0;
-}
+// конструкторы с перегрузкой
+shared_ptr_toy::shared_ptr_toy() : object(nullptr), count(nullptr) {}
+shared_ptr_toy::shared_ptr_toy(Toy* toy) : count(new size_t(1)), object(toy) {}
+shared_ptr_toy::shared_ptr_toy(const std::string & name) : count(new size_t(1)), object(new Toy(name)) {}
 
 // конструктор копирования
-shared_ptr_toy::shared_ptr_toy(const shared_ptr_toy & toy) {
-    object = toy.object;
-    count++;
+shared_ptr_toy::shared_ptr_toy(const shared_ptr_toy & other) : count(other.count), object(other.object) {
+    object = other.object;
+    count = other.count;
+    (*count)++; // количество копий копируемого объекта + еще одна
 }
 
 // оператор присваивания
-shared_ptr_toy& shared_ptr_toy::operator=(const shared_ptr_toy & toy) {
-    if (this != &toy) {
-        object = toy.object;
-        count++;
+shared_ptr_toy& shared_ptr_toy::operator=(const shared_ptr_toy & other) {
+    if (this != &other) {
+        // модифицируем текущий объект перед присваиванием
+        if (count) {
+            if (*count == 1) {
+                delete object;  // удаляем объект
+                delete count;
+            } else (*count)--;  // на одну копию меньше
+        }
+        // присваивание с учетом уже имеющегося количества копий
+        object = other.object;
+        count = other.count;
+        (*count)++;
     }
     return *this;
 }
 
 // деструктор
 shared_ptr_toy::~shared_ptr_toy() {
-    if (object != nullptr && count == 0) {
+    if (count == nullptr) return;
+    if (*count == 1) {
         std::cout << object->getName() << " :: object destroyed" << std::endl;
-        delete object;              // проверка не нужна, delete nullptr безопасна
+        delete object;
+        delete count;
     } else {
-        if (count > 0) count--;     // если еще есть копии - объект не удаляем
         std::cout << object->getName() << " :: object copy destroyed" << std::endl;
+        (*count)--;
     }
 }
-//
+
 Toy* shared_ptr_toy::operator->() {
     return object;
 }
-
 Toy& shared_ptr_toy::operator*() {
     return *object;
 }
 
-shared_ptr_toy shared_ptr_toy::make_shared_toy(const std::string & name) {
-    object = new Toy(name);
-    count = 0;
-    return *this;
+unsigned shared_ptr_toy::use_count() const {
+    return (count) ?  *count : 0;
 }
 
-int shared_ptr_toy::use_count() const {
-    return count;
+void shared_ptr_toy::print_count(const std::string &text) const {
+    std::cout << text << " :: " << object->getName() << " :: " << use_count() << std::endl;
 }
+
+shared_ptr_toy shared_ptr_toy::make_shared_toy(const std::string & name) {
+    shared_ptr_toy ptr(name);
+    return ptr;
+}
+
+
 
 
 

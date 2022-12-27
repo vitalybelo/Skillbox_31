@@ -11,5 +11,5 @@ public:
 
     [[nodiscard]] const std::string &getName() const;
     void print(const std::string& text);
-
+    virtual ~Toy();
 };

@@ -5,6 +5,7 @@ add_executable(
         main.cpp
         Toy.cpp
         shared_ptr_toy.cpp
+        solution_1.cpp
 )
 
 target_include_directories(Skillbox_31 PUBLIC ${INCLUDE_DIR})
