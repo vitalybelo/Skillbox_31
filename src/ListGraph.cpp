@@ -68,4 +68,3 @@ ListGraph::~ListGraph()
     nodeList.shrink_to_fit();
 }
 
-

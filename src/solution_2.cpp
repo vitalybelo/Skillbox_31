@@ -20,7 +20,7 @@ void solution_2()
     graph.AddEdge(3,4);
     graph.AddEdge(2,4);
 
-    cout << "\nLIST GRAPH ::\n\n";
+    cout << "\n::::::::::: LIST GRAPH :::::::::::::\n\n";
     cout << "Total vertices counted = " << graph.VerticesCount() << endl;
 
     // выводим список следующих смешных вершин для каждой вершины в графе
@@ -52,6 +52,7 @@ void solution_2()
         }
         cout << endl;
     }
+
 
 
 }
