@@ -1,10 +1,6 @@
 #pragma once
 #include "IGraph.h"
 
-struct Node {
-    int vertex;
-    std::vector<int> next;
-};
 /**
  * Сохраняет ориентированный граф в виде массива списков смежности
  */
@@ -14,6 +10,7 @@ private:
 
 public:
     ListGraph();
+    ~ListGraph() override;
 
     int getVertexIndex(int vertex);
     void AddEdge(int from, int to) override;

@@ -22,7 +22,7 @@ void ListGraph::AddEdge(int from, int to)
         node.next.push_back(to);
         nodeList.push_back(node);
     } else {
-        // добавляем новую смежную вершину в список уже существующей вершины
+        // добавляем новую смежную вершину в список существующей вершины
         nodeList.at(i).next.push_back(to);
     }
     if (getVertexIndex(to) < 0) {
@@ -33,16 +33,30 @@ void ListGraph::AddEdge(int from, int to)
     }
 }
 
-int ListGraph::VerticesCount() const {
+int ListGraph::VerticesCount() const
+{
     return (int) nodeList.size();
 }
 
-void ListGraph::GetNextVertices(int vertex, std::vector<int> &vertices) const {
-
+void ListGraph::GetNextVertices(int vertex, std::vector<int> &vertices) const
+{
+    for (const auto & i : nodeList)
+    {
+        if (vertex == i.vertex) {
+            vertices = i.next;
+            break;
+        }
+    }
 }
 
 void ListGraph::GetPrevVertices(int vertex, std::vector<int> &vertices) const {
 
+}
+
+ListGraph::~ListGraph() {
+    nodeList.clear();
+    nodeList.shrink_to_fit();
+    //std::vector<Node>().swap(nodeList);
 }
 
 

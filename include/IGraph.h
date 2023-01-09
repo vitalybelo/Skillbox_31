@@ -2,6 +2,10 @@
 #include <iostream>
 #include <vector>
 
+struct Node {
+    int vertex;
+    std::vector<int> next;
+};
 
 class IGraph {
 public:
