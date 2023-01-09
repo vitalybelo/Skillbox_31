@@ -20,22 +20,38 @@ void solution_2()
     graph.AddEdge(3,4);
     graph.AddEdge(2,4);
 
-    cout << "\nLIST GRAPH ::\n";
+    cout << "\nLIST GRAPH ::\n\n";
     cout << "Total vertices counted = " << graph.VerticesCount() << endl;
 
-    cout << "Scroll G(V,E) vertices ::\n";
+    // выводим список следующих смешных вершин для каждой вершины в графе
+    cout << "\nSCROLL NEXT G(V,E) vertices:\n";
     for (int i = 1; i <= graph.VerticesCount(); i++) {
         vector<int> vertices;
         graph.GetNextVertices(i, vertices);
         cout << "Vertex #" << i;
         if (!vertices.empty()) {
-            for (int &v: vertices) {
+            for (int &v: vertices)
                 cout << " :: --> " << v;
-            }
         } else {
-            cout << " :: --> empty";
+            cout << " :: --> none";
         }
         cout << endl;
     }
+
+    // выводим список предыдущих смешных вершин для каждой вершины в графе
+    cout << "\nSCROLL PREVIOUS G(V,E) vertices:\n";
+    for (int i = 1; i <= graph.VerticesCount(); i++) {
+        vector<int> vertices;
+        graph.GetPrevVertices(i, vertices);
+        cout << "Vertex #" << i;
+        if (!vertices.empty()) {
+            for (int &v: vertices)
+                cout << " <-- :: " << v;
+        } else {
+            cout << " <-- :: none";
+        }
+        cout << endl;
+    }
+
 
 }

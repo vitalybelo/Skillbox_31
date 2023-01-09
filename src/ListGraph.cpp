@@ -40,23 +40,32 @@ int ListGraph::VerticesCount() const
 
 void ListGraph::GetNextVertices(int vertex, std::vector<int> &vertices) const
 {
-    for (const auto & i : nodeList)
-    {
-        if (vertex == i.vertex) {
-            vertices = i.next;
+    vertices.clear();
+    for (auto & node : nodeList) {
+        if (vertex == node.vertex) {
+            vertices = node.next;
             break;
         }
     }
 }
 
-void ListGraph::GetPrevVertices(int vertex, std::vector<int> &vertices) const {
-
+void ListGraph::GetPrevVertices(int vertex, std::vector<int> &vertices) const
+{
+    vertices.clear();
+    for (auto & node : nodeList)
+    {
+        for (auto & next_vertex : node.next)
+        if (vertex == next_vertex) {
+            vertices.push_back(node.vertex);
+            break;
+        }
+    }
 }
 
-ListGraph::~ListGraph() {
+ListGraph::~ListGraph()
+{
     nodeList.clear();
     nodeList.shrink_to_fit();
-    //std::vector<Node>().swap(nodeList);
 }
 
 
