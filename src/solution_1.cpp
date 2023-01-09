@@ -8,12 +8,14 @@ using namespace std;
  * реализация умного указателя приблизительно похожего
  * инициализация через конструкторы или через статическую функцию make_shared_toy
  */
-void solution_1() {
+void solution_1()
+{
+    std::cout << "\n************* SOLUTION #1 ************\n";
 
-    Toy* pt1 = new Toy("ball");
+    Toy* toy_ball = new Toy("ball");
 
     auto p0 = shared_ptr_toy::make_shared_toy("bulk");
-    shared_ptr_toy p1(pt1);
+    shared_ptr_toy p1(toy_ball);
     shared_ptr_toy p2("bone");
     shared_ptr_toy p3(p1);
     shared_ptr_toy p4(p1);
