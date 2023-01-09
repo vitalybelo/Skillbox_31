@@ -11,8 +11,12 @@ int main() {
      */
     //solution_1();
 
-    solution_2_list();
+    /**
+     * Сохраняет ориентированный граф в виде массива списков смежности
+     */
+    //solution_2_list();
 
+    solution_2_matrix();
 
     return 0;
 }
