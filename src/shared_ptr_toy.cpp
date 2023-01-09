@@ -8,18 +8,16 @@ shared_ptr_toy::shared_ptr_toy(const std::string & name) : count(new size_t(1)),
 
 // конструктор копирования
 shared_ptr_toy::shared_ptr_toy(const shared_ptr_toy & other) : count(other.count), object(other.object) {
-    object = other.object;
-    count = other.count;
     (*count)++; // количество копий копируемого объекта + еще одна
 }
 
 // оператор присваивания
 shared_ptr_toy& shared_ptr_toy::operator=(const shared_ptr_toy & other) {
     if (this != &other) {
-        // модифицируем текущий объект перед присваиванием
-        if (count) {
+        // модифицируем текущий объект перед присваиванием ему новых значений
+        if (count != nullptr) {
             if (*count == 1) {
-                delete object;  // удаляем объект
+                delete object;  // удаляем объект полностью
                 delete count;
             } else (*count)--;  // станет на одну копию меньше
         }
@@ -52,7 +50,7 @@ Toy& shared_ptr_toy::operator*() {
 }
 
 unsigned shared_ptr_toy::use_count() const {
-    return (count) ?  *count : 0;
+    return (count != nullptr) ?  *count : 0;
 }
 
 void shared_ptr_toy::print_count(const std::string &text) const {

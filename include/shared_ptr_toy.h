@@ -2,7 +2,6 @@
 #include "Toy.h"
 #include <iostream>
 
-
 class shared_ptr_toy {
 private:
     Toy* object;
