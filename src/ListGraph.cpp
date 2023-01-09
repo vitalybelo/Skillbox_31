@@ -48,7 +48,8 @@ void ListGraph::GetNextVertices(int vertex, std::vector<int> &vertices) const
         }
     }
 }
-static void pushBackUnique(int vertex, std::vector<int> &vertices) {
+
+void ListGraph::pushBackUnique(int vertex, std::vector<int> &vertices) {
     for (auto & v : vertices) {
         if (vertex == v) return;
     }
@@ -93,5 +94,6 @@ ListGraph::~ListGraph()
     nodeList.clear();
     nodeList.shrink_to_fit();
 }
+
 
 

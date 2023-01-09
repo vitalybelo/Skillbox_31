@@ -2,8 +2,8 @@
 #include "ListGraph.h"
 using namespace std;
 
-void solution_2_list()
-{
+void solution_2_list() {
+
     cout << "\n************* SOLUTION #2 ************\n";
 
     ListGraph graph;
@@ -81,7 +81,6 @@ void solution_2_list()
         }
         cout << endl;
     }
-
 
 
 }
