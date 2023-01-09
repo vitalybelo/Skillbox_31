@@ -11,7 +11,7 @@ int main() {
      */
     //solution_1();
 
-    solution_2();
+    solution_2_list();
 
 
     return 0;

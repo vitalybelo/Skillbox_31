@@ -8,7 +8,7 @@ add_executable(
         solution_1.cpp
         IGraph.cpp
         ListGraph.cpp
-        solution_2.cpp
+        solution_2_list.cpp
 
 )
 

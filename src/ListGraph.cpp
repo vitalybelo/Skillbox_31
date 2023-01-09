@@ -48,6 +48,22 @@ void ListGraph::GetNextVertices(int vertex, std::vector<int> &vertices) const
         }
     }
 }
+static void pushBackUnique(int vertex, std::vector<int> &vertices) {
+    for (auto & v : vertices) {
+        if (vertex == v) return;
+    }
+    vertices.push_back(vertex);
+}
+
+void ListGraph::getAllNextVertices(int vertex, std::vector<int> &vertices) const
+{
+    std::vector<int> v;
+    GetNextVertices(vertex, v);
+    for (int & vx : v) {
+        pushBackUnique(vx, vertices);
+        getAllNextVertices(vx, vertices);
+    }
+}
 
 void ListGraph::GetPrevVertices(int vertex, std::vector<int> &vertices) const
 {
@@ -62,9 +78,20 @@ void ListGraph::GetPrevVertices(int vertex, std::vector<int> &vertices) const
     }
 }
 
+void ListGraph::getAllPrevVertices(int vertex, std::vector<int> &vertices) const
+{
+    std::vector<int> v;
+    GetPrevVertices(vertex, v);
+    for (int & vx : v) {
+        pushBackUnique(vx, vertices);
+        getAllPrevVertices(vx, vertices);
+    }
+}
+
 ListGraph::~ListGraph()
 {
     nodeList.clear();
     nodeList.shrink_to_fit();
 }
+
 
