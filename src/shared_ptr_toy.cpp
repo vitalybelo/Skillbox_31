@@ -7,7 +7,8 @@ shared_ptr_toy::shared_ptr_toy(Toy* toy) : count(new size_t(1)), object(toy) {}
 shared_ptr_toy::shared_ptr_toy(const std::string & name) : count(new size_t(1)), object(new Toy(name)) {}
 
 // конструктор копирования
-shared_ptr_toy::shared_ptr_toy(const shared_ptr_toy & other) : count(other.count), object(other.object) {
+shared_ptr_toy::shared_ptr_toy(const shared_ptr_toy & other) : count(other.count), object(other.object)
+{
     (*count)++; // количество копий копируемого объекта + еще одна
 }
 
