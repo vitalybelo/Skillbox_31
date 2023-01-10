@@ -39,6 +39,19 @@ void solution_2_matrix() {
         cout << endl;
     }
 
-
+    // выводим список предыдущих смешных вершин для каждой вершины в графе
+    cout << "\nSCROLL PREVIOUS G(V,E) vertices:\n";
+    for (int i = 1; i <= matrixGraph.VerticesCount(); i++) {
+        vector<int> vertices;
+        matrixGraph.GetPrevVertices(i, vertices);
+        cout << "Vertex #" << i;
+        if (!vertices.empty()) {
+            for (int &v: vertices)
+                cout << " <-- :: " << v;
+        } else {
+            cout << " <-- :: none";
+        }
+        cout << endl;
+    }
 
 }

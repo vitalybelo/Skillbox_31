@@ -26,8 +26,8 @@ MatrixGraph::~MatrixGraph()
 void MatrixGraph::AddEdge(int from, int to) {
     if (from <= 0 || to <= 0) return;
     if (from > matrixDimension || to > matrixDimension) return;
-    from -= 1; // приводим номера для использования в массиве
-    to -= 1;
+    from -= START_INDEX; // приводим номера для использования в массиве
+    to -= START_INDEX;
     if (!verticesMap[from]) {
         verticesCounter++;
         verticesMap[from] = true;
@@ -46,14 +46,23 @@ int MatrixGraph::VerticesCount() const {
 void MatrixGraph::GetNextVertices(int vertex, std::vector<int> &vertices) const
 {
     vertices.clear();
-    if (vertex-- <= 0) return;
-    for (int x = vertex; x < verticesCounter; x++) {
-        if (matrix[vertex][x]) vertices.push_back(x + 1);
+    if (vertex <= 0 || vertex > matrixDimension) return;
+    vertex -= START_INDEX;
+    for (int i = 0; i < verticesCounter; i++) {
+        if (matrix[vertex][i])
+            vertices.push_back(i + 1);
     }
 }
 
-void MatrixGraph::GetPrevVertices(int vertex, std::vector<int> &vertices) const {
-
+void MatrixGraph::GetPrevVertices(int vertex, std::vector<int> &vertices) const
+{
+    vertices.clear();
+    if (vertex <= 0 || vertex > matrixDimension) return;
+    vertex -= START_INDEX;
+    for (int i = 0; i < verticesCounter; i++) {
+        if (matrix[i][vertex])
+            vertices.push_back(i + 1);
+    }
 }
 
 void MatrixGraph::PrintMatrix() {
