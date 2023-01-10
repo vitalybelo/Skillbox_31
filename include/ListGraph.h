@@ -1,6 +1,11 @@
 #pragma once
 #include "IGraph.h"
 
+struct Node {
+    int vertex;
+    std::vector<int> next;
+};
+
 /**
  * Сохраняет ориентированный граф в виде массива списков смежности
  */
@@ -22,4 +27,6 @@ public:
     void getAllNextVertices(int vertex, std::vector<int> &vertices) const; // возвращает все следующие вершины куда можно дойти по графу
     void getAllPrevVertices(int vertex, std::vector<int> &vertices) const; // возвращает все предыдущие вершины откуда можно дойти по графу
 
+    void PrintNextVertices() const;
+    void PrintPrevVertices() const;
 };

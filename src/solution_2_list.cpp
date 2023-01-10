@@ -14,28 +14,18 @@ void solution_2_list() {
      *     v     v
      *   V4 <--- V3
      */
-    graph.AddEdge(1,2);
-    graph.AddEdge(2,3);
-    graph.AddEdge(3,4);
-    graph.AddEdge(2,4);
+    graph.AddEdge(1, 2);
+    graph.AddEdge(2, 3);
+    graph.AddEdge(3, 4);
+    graph.AddEdge(2, 4);
+    graph.AddEdge(2, 5);
+    graph.AddEdge(5, 3);
 
     cout << "::::::::::::: LIST GRAPH  ::::::::::::\n\n";
     cout << "Total vertices counted = " << graph.VerticesCount() << endl;
 
     // выводим список следующих смешных вершин для каждой вершины в графе
-    cout << "\nSCROLL NEXT G(V,E) vertices:\n";
-    for (int i = 1; i <= graph.VerticesCount(); i++) {
-        vector<int> vertices;
-        graph.GetNextVertices(i, vertices);
-        cout << "Vertex #" << i;
-        if (!vertices.empty()) {
-            for (int &v: vertices)
-                cout << " :: --> " << v;
-        } else {
-            cout << " :: --> none";
-        }
-        cout << endl;
-    }
+    graph.PrintNextVertices();
 
     // выводим список предыдущих смешных вершин для каждой вершины в графе
     cout << "\nSCROLL PREVIOUS G(V,E) vertices:\n";

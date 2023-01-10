@@ -95,5 +95,22 @@ ListGraph::~ListGraph()
     nodeList.shrink_to_fit();
 }
 
+void ListGraph::PrintNextVertices() const
+{
+    std::cout << "\nSCROLL NEXT G(V,E) vertices:\n";
+    for (int i = 1; i <= VerticesCount(); i++) {
+        std::vector<int> vertices;
+        GetNextVertices(i, vertices);
+        std::cout << "Vertex #" << i;
+        if (!vertices.empty()) {
+            for (int &v: vertices)
+                std::cout << " :: --> " << v;
+        } else {
+            std::cout << " :: --> none";
+        }
+        std::cout << std::endl;
+    }
+}
+
 
 

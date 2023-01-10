@@ -50,7 +50,7 @@ void MatrixGraph::GetNextVertices(int vertex, std::vector<int> &vertices) const
     vertex -= START_INDEX;
     for (int i = 0; i < verticesCounter; i++) {
         if (matrix[vertex][i])
-            vertices.push_back(i + 1);
+            vertices.push_back(i + START_INDEX);
     }
 }
 
@@ -61,14 +61,14 @@ void MatrixGraph::GetPrevVertices(int vertex, std::vector<int> &vertices) const
     vertex -= START_INDEX;
     for (int i = 0; i < verticesCounter; i++) {
         if (matrix[i][vertex])
-            vertices.push_back(i + 1);
+            vertices.push_back(i + START_INDEX);
     }
 }
 
 void MatrixGraph::PrintMatrix() {
     std::cout << "\n     ";
     for (int i = 0; i < verticesCounter; i++) {
-        std::cout << i + 1 << " ";
+        std::cout << i + START_INDEX << " ";
     }
     std::cout << std::endl;
     std::cout << "  ";
@@ -77,7 +77,7 @@ void MatrixGraph::PrintMatrix() {
     }
     std::cout << std::endl;
     for (int i = 0; i < verticesCounter; i++) {
-        std::cout << i + 1 << " |  ";
+        std::cout << i + START_INDEX << " |  ";
         for (int x = 0; x < verticesCounter; x++) {
             std::cout << matrix[i][x] << " ";
         }
