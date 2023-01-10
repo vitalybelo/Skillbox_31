@@ -29,4 +29,7 @@ public:
 
     void PrintNextVertices() const;
     void PrintPrevVertices() const;
+    void PrintAllNextVertices() const;
+    void PrintAllPrevVertices() const;
+
 };

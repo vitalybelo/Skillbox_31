@@ -9,10 +9,10 @@ void solution_2_list() {
     ListGraph graph;
     /**
      *   V1 ---> V2
-     *         / |
-     *       /   |
-     *     v     v
-     *   V4 <--- V3
+     *         / |  \
+     *       /   |   \
+     *     v     v    v
+     *   V4 <-- V3 <- V5
      */
     graph.AddEdge(1, 2);
     graph.AddEdge(2, 3);
@@ -28,49 +28,12 @@ void solution_2_list() {
     graph.PrintNextVertices();
 
     // выводим список предыдущих смешных вершин для каждой вершины в графе
-    cout << "\nSCROLL PREVIOUS G(V,E) vertices:\n";
-    for (int i = 1; i <= graph.VerticesCount(); i++) {
-        vector<int> vertices;
-        graph.GetPrevVertices(i, vertices);
-        cout << "Vertex #" << i;
-        if (!vertices.empty()) {
-            for (int &v: vertices)
-                cout << " <-- :: " << v;
-        } else {
-            cout << " <-- :: none";
-        }
-        cout << endl;
-    }
+    graph.PrintPrevVertices();
 
-    // выводим список всех следующих смешных вершин для каждой вершины в графе
-    cout << "\nSCROLL ALL NEXT G(V,E) vertices:\n";
-    for (int i = 1; i <= graph.VerticesCount(); i++) {
-        vector<int> vertices;
-        graph.getAllNextVertices(i, vertices);
-        cout << "Vertex #" << i;
-        if (!vertices.empty()) {
-            for (int &v: vertices)
-                cout << " :: --> " << v;
-        } else {
-            cout << " :: --> none";
-        }
-        cout << endl;
-    }
+    // выводим список всех следующих вершин до которых можно дойти из конкретной вершины
+    graph.PrintAllNextVertices();
 
-    // выводим список предыдущих смешных вершин для каждой вершины в графе
-    cout << "\nSCROLL ALL PREVIOUS G(V,E) vertices:\n";
-    for (int i = 1; i <= graph.VerticesCount(); i++) {
-        vector<int> vertices;
-        graph.getAllPrevVertices(i, vertices);
-        cout << "Vertex #" << i;
-        if (!vertices.empty()) {
-            for (int &v: vertices)
-                cout << " <-- :: " << v;
-        } else {
-            cout << " <-- :: none";
-        }
-        cout << endl;
-    }
-
+    // выводим список всех предыдущих вершин из которых можно дойти до конкретной вершины
+    graph.PrintAllPrevVertices();
 
 }

@@ -112,5 +112,56 @@ void ListGraph::PrintNextVertices() const
     }
 }
 
+void ListGraph::PrintPrevVertices() const
+{
+    std::cout << "\nSCROLL PREVIOUS G(V,E) vertices:\n";
+    for (int i = 1; i <= VerticesCount(); i++) {
+        std::vector<int> vertices;
+        GetPrevVertices(i, vertices);
+        std::cout << "Vertex #" << i;
+        if (!vertices.empty()) {
+            for (int &v: vertices)
+                std::cout << " <-- :: " << v;
+        } else {
+            std::cout << " <-- :: none";
+        }
+        std::cout << std::endl;
+    }
+}
+
+void ListGraph::PrintAllNextVertices() const
+{
+    std::cout << "\nSCROLL ALL NEXT G(V,E) vertices:\n";
+    for (int i = 1; i <= VerticesCount(); i++) {
+        std::vector<int> vertices;
+        getAllNextVertices(i, vertices);
+        std::cout << "Vertex #" << i;
+        if (!vertices.empty()) {
+            for (int &v: vertices)
+                std::cout << " :: --> " << v;
+        } else {
+            std::cout << " :: --> none";
+        }
+        std::cout << std::endl;
+    }
+}
+
+void ListGraph::PrintAllPrevVertices() const
+{
+    std::cout << "\nSCROLL ALL PREVIOUS G(V,E) vertices:\n";
+    for (int i = 1; i <= VerticesCount(); i++) {
+        std::vector<int> vertices;
+        getAllPrevVertices(i, vertices);
+        std::cout << "Vertex #" << i;
+        if (!vertices.empty()) {
+            for (int &v: vertices)
+                std::cout << " <-- :: " << v;
+        } else {
+            std::cout << " <-- :: none";
+        }
+        std::cout << std::endl;
+    }
+}
+
 
 
