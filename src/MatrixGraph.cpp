@@ -3,48 +3,53 @@
 MatrixGraph::MatrixGraph(int dimension)
 {
     verticesCounter = 0;
-    this->dimension = dimension;
-    matrix = new bool *[dimension];
+    this->matrixDimension = dimension;
+    verticesMap = new bool[dimension];
+    matrix = new bool*[dimension];
     for (int i = 0; i < dimension; i++) {
+        verticesMap[i] = false;
         matrix[i] = new bool[dimension];
-        for (int x = 0; x < dimension; x++) {
+        for (int x = 0; x < dimension; x++)
             matrix[i][x] = false;
-        }
     }
 }
 
 MatrixGraph::~MatrixGraph()
 {
-    for (int i = 0; i < dimension; i++) {
+    for (int i = 0; i < matrixDimension; i++) {
         delete[] matrix[i];
     }
     delete[] matrix;
+    delete[] verticesMap;
 }
 
 void MatrixGraph::AddEdge(int from, int to) {
     if (from <= 0 || to <= 0) return;
-    from -= 1;
+    if (from > matrixDimension || to > matrixDimension) return;
+    from -= 1; // приводим номера для использования в массиве
     to -= 1;
+    if (!verticesMap[from]) {
+        verticesCounter++;
+        verticesMap[from] = true;
+    }
     matrix[from][to] = true;
-    matrix[to][from] = true;
-    verticesCounter++;
-}
-
-void MatrixGraph::RemoveEdge(int from, int to) {
-    if (from <= 0 || to <= 0) return;
-    from -= 1;
-    to -= 1;
-    matrix[from][to] = false;
-    matrix[to][from] = false;
-    verticesCounter--;
+    if (!verticesMap[to]) {
+        verticesCounter++;
+        verticesMap[to] = true;
+    }
 }
 
 int MatrixGraph::VerticesCount() const {
     return verticesCounter;
 }
 
-void MatrixGraph::GetNextVertices(int vertex, std::vector<int> &vertices) const {
-
+void MatrixGraph::GetNextVertices(int vertex, std::vector<int> &vertices) const
+{
+    vertices.clear();
+    if (vertex-- <= 0) return;
+    for (int x = vertex; x < verticesCounter; x++) {
+        if (matrix[vertex][x]) vertices.push_back(x + 1);
+    }
 }
 
 void MatrixGraph::GetPrevVertices(int vertex, std::vector<int> &vertices) const {
