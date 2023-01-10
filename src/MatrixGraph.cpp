@@ -86,3 +86,37 @@ void MatrixGraph::PrintMatrix() {
 
 }
 
+void MatrixGraph::PrintNextVertices() const
+{
+    std::cout << "\nSCROLL NEXT G(V,E) vertices:\n";
+    for (int i = 1; i <= verticesCounter; i++) {
+        std::vector<int> vertices;
+        GetNextVertices(i, vertices);
+        std::cout << "Vertex #" << i;
+        if (!vertices.empty()) {
+            for (int &v: vertices)
+                std::cout << " :: --> " << v;
+        } else {
+            std::cout << " :: --> none";
+        }
+        std::cout << std::endl;
+    }
+}
+
+void MatrixGraph::PrintPrevVertices() const
+{
+    std::cout << "\nSCROLL PREVIOUS G(V,E) vertices:\n";
+    for (int i = 1; i <= verticesCounter; i++) {
+        std::vector<int> vertices;
+        GetPrevVertices(i, vertices);
+        std::cout << "Vertex #" << i;
+        if (!vertices.empty()) {
+            for (int &v: vertices)
+                std::cout << " <-- :: " << v;
+        } else {
+            std::cout << " <-- :: none";
+        }
+        std::cout << std::endl;
+    }
+}
+

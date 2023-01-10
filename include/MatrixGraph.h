@@ -1,5 +1,6 @@
 #pragma once
 #include "IGraph.h"
+
 #define START_INDEX 1
 /**
  * Сохраняет ориентированный граф в виде матрицы смежности
@@ -23,5 +24,7 @@ public:
     void GetPrevVertices(int vertex, std::vector<int> &vertices) const override;
 
     void PrintMatrix();
+    void PrintNextVertices() const;
+    void PrintPrevVertices() const;
 
 };
