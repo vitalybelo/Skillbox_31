@@ -26,5 +26,6 @@ public:
     void PrintMatrix();
     void PrintNextVertices() const;
     void PrintPrevVertices() const;
+    static void DisplayGraph();
 
 };

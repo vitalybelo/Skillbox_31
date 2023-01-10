@@ -163,5 +163,14 @@ void ListGraph::PrintAllPrevVertices() const
     }
 }
 
+void ListGraph::DisplayGraph()
+{
+    std::cout << "V1 ---> V2\n";
+    std::cout << "      / |  \\\n";
+    std::cout << "    /   |   \\\n";
+    std::cout << "  v     v    v\n";
+    std::cout << "V4 <-- V3 <- V5\n";
+}
+
 
 

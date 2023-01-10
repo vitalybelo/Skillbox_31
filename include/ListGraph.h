@@ -27,6 +27,7 @@ public:
     void getAllNextVertices(int vertex, std::vector<int> &vertices) const; // возвращает все следующие вершины куда можно дойти по графу
     void getAllPrevVertices(int vertex, std::vector<int> &vertices) const; // возвращает все предыдущие вершины откуда можно дойти по графу
 
+    static void DisplayGraph() ;
     void PrintNextVertices() const;
     void PrintPrevVertices() const;
     void PrintAllNextVertices() const;

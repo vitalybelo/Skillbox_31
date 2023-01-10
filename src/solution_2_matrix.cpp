@@ -13,6 +13,7 @@ void solution_2_matrix() {
      *     v     v    v
      *   V4 <-- V3 <- V5
      */
+    MatrixGraph::DisplayGraph();
     matrixGraph.AddEdge(1, 2);
     matrixGraph.AddEdge(2, 3);
     matrixGraph.AddEdge(3, 4);
