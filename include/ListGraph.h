@@ -15,7 +15,8 @@ private:
 
 public:
     ListGraph();
-    explicit ListGraph(IGraph *oth);
+    explicit ListGraph(IGraph *oth); // конструктор копирования
+    ListGraph& operator=(const IGraph* other); // оператор присваивания
     ~ListGraph() override;
 
     void AddEdge(int from, int to) override;
@@ -23,6 +24,8 @@ public:
     void GetNextVertices(int vertex, std::vector<int> &vertices) const override; // возвращает все следующие смежные вершины
     void GetPrevVertices(int vertex, std::vector<int> &vertices) const override; // возвращает все предыдущие смежные вершины
     void showVertices() override; // отображение смежных вершин графа
-    int getVertexIndex(int vertex); // возвращает индекс элемента вектора, если вершина существует в списке графа, или -1 если вершины нет в списке графа
+    int getVertexIndex(int vertex); // возвращает индекс элемента вектора, если вершина существует в списке графа, -1 если вершины нет в списке графа
+
+
 
 };

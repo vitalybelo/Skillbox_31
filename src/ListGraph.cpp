@@ -3,8 +3,7 @@
 
 ListGraph::ListGraph() = default;
 
-ListGraph::ListGraph(IGraph *oth)
-{
+ListGraph::ListGraph(IGraph *oth) {
     int verticesCount = oth->VerticesCount();
     for (int vertex = 1; vertex <= verticesCount; ++vertex) {
         std::vector<int> vertices;
@@ -15,15 +14,26 @@ ListGraph::ListGraph(IGraph *oth)
     }
 }
 
-ListGraph::~ListGraph()
-{
+ListGraph &ListGraph::operator=(const IGraph* other) {
+    nodeList.clear();
+    int verticesCount = other->VerticesCount();
+    for (int vertex = 1; vertex <= verticesCount; ++vertex) {
+        std::vector<int> vertices;
+        other->GetNextVertices(vertex, vertices);
+        for (int v : vertices) {
+            ListGraph::AddEdge(vertex, v);
+        }
+    }
+    return *this;
+}
+
+ListGraph::~ListGraph() {
     nodeList.clear();
     nodeList.shrink_to_fit();
 }
 
 
-int ListGraph::getVertexIndex(int vertex)
-{
+int ListGraph::getVertexIndex(int vertex) {
     for (int i = 0; i < nodeList.size(); i++) {
         if (vertex == nodeList.at(i).vertex) {
             // такая вершина уже есть в коллекции графа, возвращаем индекс массива
@@ -34,8 +44,8 @@ int ListGraph::getVertexIndex(int vertex)
     return -1;
 }
 
-void ListGraph::AddEdge(int from, int to)
-{
+void ListGraph::AddEdge(int from, int to) {
+
     int i = getVertexIndex(from);
     if (i < 0) {
         // начальная вершины еще не в списке, добавляем в список графа новую вершину
@@ -111,7 +121,4 @@ void ListGraph::showVertices() {
         std::cout << std::endl;
     }
 }
-
-
-
 

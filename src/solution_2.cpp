@@ -42,9 +42,17 @@ void solution_2() {
     IGraph *d = new MatrixGraph(b);
     d->showVertices();
 
+    cout << "\n----------------------------------->\n";
+    cout << "IGraph *c = new ListGraph(d)\n";
+    cout << "----------------------------------->\n";
+    IGraph *c = new ListGraph(d);
+    c->showVertices();
+
     delete a;
     delete b;
     delete d;
+    delete c;
+
 }
 
 void DisplayGraph()
