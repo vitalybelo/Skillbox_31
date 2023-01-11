@@ -55,5 +55,4 @@ void solution_2() {
     matrixGraph.PrintNextVertices(); // выводим список следующих смешных вершин для каждой вершины в графе
     matrixGraph.PrintPrevVertices(); // выводим список предыдущих смешных вершин для каждой вершины в графе
 
-
 }
