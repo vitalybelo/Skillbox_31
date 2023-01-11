@@ -1,7 +1,7 @@
 #include "MatrixGraph.h"
 
-MatrixGraph::MatrixGraph(int dimension)
-{
+MatrixGraph::MatrixGraph(int dimension) {
+
     verticesCounter = 0;
     this->matrixDimension = dimension;
     verticesMap = new bool[dimension];
@@ -11,6 +11,28 @@ MatrixGraph::MatrixGraph(int dimension)
         matrix[i] = new bool[dimension];
         for (int x = 0; x < dimension; x++)
             matrix[i][x] = false;
+    }
+}
+
+MatrixGraph::MatrixGraph(IGraph *oth) {
+
+    int verticesCount = oth->VerticesCount();
+    matrixDimension = verticesCount + 2;
+    verticesMap = new bool[matrixDimension];
+    matrix = new bool*[matrixDimension];
+    for (int i = 0; i < matrixDimension; i++) {
+        verticesMap[i] = false;
+        matrix[i] = new bool[matrixDimension];
+        for (int x = 0; x < matrixDimension; x++)
+            matrix[i][x] = false;
+    }
+    verticesCounter = 0;
+    for (int vertex = 1; vertex <= verticesCount; ++vertex) {
+        std::vector<int> vertices;
+        oth->GetNextVertices(vertex, vertices);
+        for (int v : vertices) {
+            MatrixGraph::AddEdge(vertex, v);
+        }
     }
 }
 
@@ -86,15 +108,6 @@ void MatrixGraph::PrintMatrix() {
 
 }
 
-void MatrixGraph::DisplayGraph()
-{
-    std::cout << "V1 ---> V2\n";
-    std::cout << "      / |  \\\n";
-    std::cout << "    /   |   \\\n";
-    std::cout << "  v     v    v\n";
-    std::cout << "V4 <-- V3 <- V5\n";
-}
-
 void MatrixGraph::showVertices()
 {
     std::cout << "\nSCROLL NEXT G(V,E) vertices:\n";
@@ -126,5 +139,6 @@ void MatrixGraph::showVertices()
     }
 
 }
+
 
 

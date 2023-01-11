@@ -16,6 +16,7 @@ private:
 public:
 
     explicit MatrixGraph(int dimension);
+    explicit MatrixGraph(IGraph *oth);
     ~MatrixGraph() override;
 
     void AddEdge(int from, int to) override;
@@ -25,6 +26,5 @@ public:
     void showVertices() override;
 
     void PrintMatrix();
-    static void DisplayGraph();
 
 };

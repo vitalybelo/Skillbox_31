@@ -6,8 +6,7 @@ ListGraph::ListGraph() = default;
 ListGraph::ListGraph(IGraph *oth)
 {
     int verticesCount = oth->VerticesCount();
-    for (int vertex = 1; vertex <= verticesCount; ++vertex)
-    {
+    for (int vertex = 1; vertex <= verticesCount; ++vertex) {
         std::vector<int> vertices;
         oth->GetNextVertices(vertex, vertices);
         for (int v : vertices) {
@@ -56,13 +55,11 @@ void ListGraph::AddEdge(int from, int to)
     }
 }
 
-int ListGraph::VerticesCount() const
-{
+int ListGraph::VerticesCount() const {
     return (int) nodeList.size();
 }
 
-void ListGraph::GetNextVertices(int vertex, std::vector<int> &vertices) const
-{
+void ListGraph::GetNextVertices(int vertex, std::vector<int> &vertices) const {
     vertices.clear();
     for (auto & node : nodeList) {
         if (vertex == node.vertex) {
@@ -72,8 +69,7 @@ void ListGraph::GetNextVertices(int vertex, std::vector<int> &vertices) const
     }
 }
 
-void ListGraph::GetPrevVertices(int vertex, std::vector<int> &vertices) const
-{
+void ListGraph::GetPrevVertices(int vertex, std::vector<int> &vertices) const {
     vertices.clear();
     for (auto & node : nodeList)
     {
@@ -85,17 +81,8 @@ void ListGraph::GetPrevVertices(int vertex, std::vector<int> &vertices) const
     }
 }
 
-void ListGraph::DisplayGraph()
-{
-    std::cout << "V1 ---> V2\n";
-    std::cout << "      / |  \\\n";
-    std::cout << "    /   |   \\\n";
-    std::cout << "  v     v    v\n";
-    std::cout << "V4 <-- V3 <- V5\n";
-}
+void ListGraph::showVertices() {
 
-void ListGraph::showVertices()
-{
     std::cout << "\nSCROLL NEXT G(V,E) vertices:\n";
     for (int i = 1; i <= VerticesCount(); i++) {
         std::vector<int> vertices;
@@ -123,7 +110,6 @@ void ListGraph::showVertices()
         }
         std::cout << std::endl;
     }
-
 }
 
 
