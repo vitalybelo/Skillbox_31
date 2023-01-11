@@ -19,6 +19,7 @@ public:
 
     virtual ~shared_ptr_toy();
 
+    void reduce_count(bool do_echo);
     [[nodiscard]] unsigned int use_count() const;
     void print_count(const std::string &text) const;
     static shared_ptr_toy make_shared_toy(const std::string & name);
