@@ -37,13 +37,19 @@ void solution_2() {
     b->showVertices();
 
     cout << "\n----------------------------------->\n";
-    cout << "IGraph *d = new MatrixGraph(b)\n";
+    cout << "IGraph *с = new MatrixGraph(b)\n";
     cout << "----------------------------------->\n";
     IGraph *c = new MatrixGraph(b);
     c->showVertices();
 
     cout << "\n----------------------------------->\n";
-    cout << "IGraph *c = new ListGraph(d)\n";
+    cout << "IGraph *d = new MatrixGraph(c)\n";
+    cout << "----------------------------------->\n";
+    IGraph *d = new MatrixGraph(c);
+    d->showVertices();
+
+    cout << "\n----------------------------------->\n";
+    cout << "IGraph *e = new ListGraph(d)\n";
     cout << "----------------------------------->\n";
     IGraph *e = new ListGraph(d);
     c->showVertices();
