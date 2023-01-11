@@ -39,20 +39,20 @@ void solution_2() {
     cout << "\n----------------------------------->\n";
     cout << "IGraph *d = new MatrixGraph(b)\n";
     cout << "----------------------------------->\n";
-    IGraph *d = new MatrixGraph(b);
-    d->showVertices();
+    IGraph *c = new MatrixGraph(b);
+    c->showVertices();
 
     cout << "\n----------------------------------->\n";
     cout << "IGraph *c = new ListGraph(d)\n";
     cout << "----------------------------------->\n";
-    IGraph *c = new ListGraph(d);
+    IGraph *e = new ListGraph(d);
     c->showVertices();
 
     delete a;
     delete b;
-    delete d;
     delete c;
-
+    delete d;
+    delete e;
 }
 
 void DisplayGraph()
