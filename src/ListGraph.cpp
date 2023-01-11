@@ -3,6 +3,19 @@
 
 ListGraph::ListGraph() = default;
 
+ListGraph::ListGraph(IGraph *oth)
+{
+    int verticesCount = oth->VerticesCount();
+    for (int vertex = 1; vertex <= verticesCount; ++vertex)
+    {
+        std::vector<int> vertices;
+        oth->GetNextVertices(vertex, vertices);
+        for (int v : vertices) {
+            ListGraph::AddEdge(vertex, v);
+        }
+    }
+}
+
 ListGraph::~ListGraph()
 {
     nodeList.clear();
@@ -112,6 +125,7 @@ void ListGraph::showVertices()
     }
 
 }
+
 
 
 

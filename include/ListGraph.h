@@ -15,6 +15,7 @@ private:
 
 public:
     ListGraph();
+    explicit ListGraph(IGraph *oth);
     ~ListGraph() override;
 
     int getVertexIndex(int vertex);

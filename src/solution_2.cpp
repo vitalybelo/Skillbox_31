@@ -2,6 +2,8 @@
 #include "MatrixGraph.h"
 using namespace std;
 
+void DisplayGraph();
+
 void solution_2() {
 
     cout << "\n************* SOLUTION #2 ************\n\n";
@@ -12,6 +14,7 @@ void solution_2() {
      *     v     v    v
      *   V4 <-- V3 <- V5
      */
+    DisplayGraph();
 
     IGraph *a = new ListGraph;
 
@@ -22,18 +25,19 @@ void solution_2() {
     a->AddEdge(2, 5);
     a->AddEdge(5, 3);
 
-    cout << "::::::::::::: LIST GRAPH  ::::::::::::\n";
-    ListGraph::DisplayGraph();
-    cout << "::::::::::::: LIST GRAPH  ::::::::::::\n\n";
+    cout << "\nIGraph *a = new ListGraph -->\n";
+    cout << "-------------------------------->\n";
+    a->showVertices(); // отображаем список следующих и предыдущих смешных вершин для каждой вершины в графе
 
-    cout << "Total vertices counted = " << a->VerticesCount() << endl;
-    a->showVertices(); // выводим список следующих и предыдущих смешных вершин для каждой вершины в графе
+    cout << "\nIGraph *b = new ListGraph(a) -->\n";
+    cout << "----------------------------------->\n";
+    IGraph *b = new ListGraph(a);
+    b->showVertices();
+
+    IGraph
 
 
-
-
-
-
+/*
     MatrixGraph matrixGraph(10);
 
     matrixGraph.AddEdge(1, 2);
@@ -50,5 +54,17 @@ void solution_2() {
     cout << "Total vertices counted = " << matrixGraph.VerticesCount() << endl;
     matrixGraph.PrintMatrix();
     matrixGraph.showVertices(); // выводим список следующих и предыдущих смешных вершин для каждой вершины в графе
+*/
 
+    delete a;
+    delete b;
+}
+
+void DisplayGraph()
+{
+    std::cout << "  V1 ---> V2\n";
+    std::cout << "        / |  \\\n";
+    std::cout << "      /   |   \\\n";
+    std::cout << "    v     v    v\n";
+    std::cout << "  V4 <-- V3 <- V5\n\n";
 }
