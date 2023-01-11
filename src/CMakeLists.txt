@@ -9,8 +9,7 @@ add_executable(
         IGraph.cpp
         ListGraph.cpp
         MatrixGraph.cpp
-        solution_2_list.cpp
-        solution_2_matrix.cpp
+        solution_2.cpp
 
 )
 
