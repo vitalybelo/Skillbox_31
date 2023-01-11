@@ -13,5 +13,5 @@ public:
     virtual void GetPrevVertices(int vertex, std::vector<int> &vertices) const = 0; // Для конкретной вершины метод выводит в вектор “вершины” все вершины, из которых можно дойти по ребру в данную
 
     virtual ~IGraph() = default;
-
+    virtual void showVertices() = 0;
 };

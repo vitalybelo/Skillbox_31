@@ -8,10 +8,10 @@
  */
 class MatrixGraph : public IGraph {
 private:
-    bool** matrix;          // динамический массив матрицы
-    bool* verticesMap;      // карта учета вершин массива матрицы
-    int matrixDimension;    // размерность массива матрицы
-    int verticesCounter;    // счетчик вершин добавленных в матрицу
+    bool** matrix;       // динамический массив матрицы
+    bool* verticesMap;   // карта учета вершин массива матрицы
+    int matrixDimension; // размерность массива матрицы
+    int verticesCounter; // счетчик вершин добавленных в матрицу
 
 public:
 
@@ -22,10 +22,9 @@ public:
     [[nodiscard]] int VerticesCount() const override;
     void GetNextVertices(int vertex, std::vector<int> &vertices) const override;
     void GetPrevVertices(int vertex, std::vector<int> &vertices) const override;
+    void showVertices() override;
 
     void PrintMatrix();
-    void PrintNextVertices() const;
-    void PrintPrevVertices() const;
     static void DisplayGraph();
 
 };

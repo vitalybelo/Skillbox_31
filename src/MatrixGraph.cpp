@@ -86,7 +86,16 @@ void MatrixGraph::PrintMatrix() {
 
 }
 
-void MatrixGraph::PrintNextVertices() const
+void MatrixGraph::DisplayGraph()
+{
+    std::cout << "V1 ---> V2\n";
+    std::cout << "      / |  \\\n";
+    std::cout << "    /   |   \\\n";
+    std::cout << "  v     v    v\n";
+    std::cout << "V4 <-- V3 <- V5\n";
+}
+
+void MatrixGraph::showVertices()
 {
     std::cout << "\nSCROLL NEXT G(V,E) vertices:\n";
     for (int i = 1; i <= verticesCounter; i++) {
@@ -101,10 +110,7 @@ void MatrixGraph::PrintNextVertices() const
         }
         std::cout << std::endl;
     }
-}
 
-void MatrixGraph::PrintPrevVertices() const
-{
     std::cout << "\nSCROLL PREVIOUS G(V,E) vertices:\n";
     for (int i = 1; i <= verticesCounter; i++) {
         std::vector<int> vertices;
@@ -118,15 +124,7 @@ void MatrixGraph::PrintPrevVertices() const
         }
         std::cout << std::endl;
     }
-}
 
-void MatrixGraph::DisplayGraph()
-{
-    std::cout << "V1 ---> V2\n";
-    std::cout << "      / |  \\\n";
-    std::cout << "    /   |   \\\n";
-    std::cout << "  v     v    v\n";
-    std::cout << "V4 <-- V3 <- V5\n";
 }
 
 
