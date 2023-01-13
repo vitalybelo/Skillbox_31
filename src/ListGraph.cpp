@@ -3,25 +3,27 @@
 
 ListGraph::ListGraph() = default;
 
-ListGraph::ListGraph(IGraph *oth) {
-    int verticesCount = oth->VerticesCount();
-    for (int vertex = 1; vertex <= verticesCount; ++vertex) {
+ListGraph::ListGraph(IGraph *other) {
+    // конструктор должен скопировать граф из объекта интерфейса IGraph
+    std::vector<int> verticesNumbers = other->getVerticesNumbers();
+    // для всех вершин копируемого графа получаем смежные вершины и создаем копии
+    for (int vertex : verticesNumbers) {
         std::vector<int> vertices;
-        oth->GetNextVertices(vertex, vertices);
-        for (int v : vertices) {
-            ListGraph::AddEdge(vertex, v);
+        other->GetNextVertices(vertex, vertices);
+        for (int i : vertices) {
+            ListGraph::AddEdge(vertex, i);
         }
     }
 }
 
 ListGraph &ListGraph::operator=(const IGraph* other) {
     nodeList.clear();
-    int verticesCount = other->VerticesCount();
-    for (int vertex = 1; vertex <= verticesCount; ++vertex) {
+    std::vector<int> verticesNumbers = other->getVerticesNumbers();
+    for (int vertex : verticesNumbers) {
         std::vector<int> vertices;
         other->GetNextVertices(vertex, vertices);
-        for (int v : vertices) {
-            ListGraph::AddEdge(vertex, v);
+        for (int i : vertices) {
+            ListGraph::AddEdge(vertex, i);
         }
     }
     return *this;
@@ -32,7 +34,6 @@ ListGraph::~ListGraph() {
     nodeList.shrink_to_fit();
 }
 
-
 int ListGraph::getVertexIndex(int vertex) {
     for (int i = 0; i < nodeList.size(); i++) {
         if (vertex == nodeList.at(i).vertex) {
@@ -42,6 +43,18 @@ int ListGraph::getVertexIndex(int vertex) {
     }
     // вершина не найдена - это новая вершина - её нужно добавить в коллекцию
     return -1;
+}
+
+int ListGraph::VerticesCount() const {
+    return (int) nodeList.size();
+}
+
+std::vector<int> ListGraph::getVerticesNumbers() const {
+    std::vector<int> vertices;
+    for (const auto & i : nodeList) {
+        vertices.push_back(i.vertex);
+    }
+    return vertices;
 }
 
 void ListGraph::AddEdge(int from, int to) {
@@ -63,10 +76,6 @@ void ListGraph::AddEdge(int from, int to) {
         node.vertex = to;
         nodeList.push_back(node);
     }
-}
-
-int ListGraph::VerticesCount() const {
-    return (int) nodeList.size();
 }
 
 void ListGraph::GetNextVertices(int vertex, std::vector<int> &vertices) const {
@@ -93,11 +102,12 @@ void ListGraph::GetPrevVertices(int vertex, std::vector<int> &vertices) const {
 
 void ListGraph::showVertices() {
 
+    std::vector<int> verticesNumbers = getVerticesNumbers();
     std::cout << "\nSCROLL NEXT G(V,E) vertices:\n";
-    for (int i = 1; i <= VerticesCount(); i++) {
+    for (auto vertex : verticesNumbers) {
         std::vector<int> vertices;
-        GetNextVertices(i, vertices);
-        std::cout << "Vertex #" << i;
+        GetNextVertices(vertex, vertices);
+        std::cout << "Vertex #" << vertex;
         if (!vertices.empty()) {
             for (int &v: vertices)
                 std::cout << " :: --> " << v;
@@ -108,10 +118,10 @@ void ListGraph::showVertices() {
     }
 
     std::cout << "\nSCROLL PREVIOUS G(V,E) vertices:\n";
-    for (int i = 1; i <= VerticesCount(); i++) {
+    for (auto vertex : verticesNumbers) {
         std::vector<int> vertices;
-        GetPrevVertices(i, vertices);
-        std::cout << "Vertex #" << i;
+        GetPrevVertices(vertex, vertices);
+        std::cout << "Vertex #" << vertex;
         if (!vertices.empty()) {
             for (int &v: vertices)
                 std::cout << " <-- :: " << v;
@@ -121,4 +131,5 @@ void ListGraph::showVertices() {
         std::cout << std::endl;
     }
 }
+
 

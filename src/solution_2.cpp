@@ -12,7 +12,7 @@ void solution_2() {
      *         / |  \
      *       /   |   \
      *     v     v    v
-     *   V4 <-- V3 <- V5
+     *   V4 <-- V3 <- V7 --> V9
      */
     DisplayGraph();
 
@@ -22,8 +22,9 @@ void solution_2() {
     a->AddEdge(2, 3);
     a->AddEdge(3, 4);
     a->AddEdge(2, 4);
-    a->AddEdge(2, 5);
-    a->AddEdge(5, 3);
+    a->AddEdge(2, 7);
+    a->AddEdge(7, 3);
+    a->AddEdge(7, 9);
 
     cout << "\n----------------------------------->\n";
     cout << "IGraph *a = new ListGraph\n";
@@ -37,7 +38,7 @@ void solution_2() {
     b->showVertices();
 
     cout << "\n----------------------------------->\n";
-    cout << "IGraph *с = new MatrixGraph(b)\n";
+    cout << "IGraph *c = new MatrixGraph(b)\n";
     cout << "----------------------------------->\n";
     IGraph *c = new MatrixGraph(b);
     c->showVertices();
@@ -67,5 +68,5 @@ void DisplayGraph()
     std::cout << "        / |  \\\n";
     std::cout << "      /   |   \\\n";
     std::cout << "    v     v    v\n";
-    std::cout << "  V4 <-- V3 <- V5\n";
+    std::cout << "  V4 <-- V3 <- V7 --> V9\n";
 }
