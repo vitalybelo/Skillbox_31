@@ -11,8 +11,8 @@ shared_ptr_toy::shared_ptr_toy(const shared_ptr_toy & other) : count(other.count
     (*count)++; // количество копий копируемого объекта увеличивается на + еще одну
 }
 
-void shared_ptr_toy::reduce_count(bool do_echo)
-{
+void shared_ptr_toy::reduce_count(bool do_echo) {
+
     if (count == nullptr) return;
     if (*count == 1) {
         if (do_echo)
@@ -28,8 +28,9 @@ void shared_ptr_toy::reduce_count(bool do_echo)
 
 // оператор присваивания
 shared_ptr_toy& shared_ptr_toy::operator=(const shared_ptr_toy & other) {
+
     if (this != &other) {
-        // уменьшаем количество копий (или удаляем) объект подлежащий замене
+        // уменьшаем количество копий объекта или удаляем объект подлежащий замене
         reduce_count(false);
 
         // присваиваем текущему объекту значение другого, и увеличиваем счетчик копий
@@ -41,8 +42,7 @@ shared_ptr_toy& shared_ptr_toy::operator=(const shared_ptr_toy & other) {
 }
 
 // деструктор
-shared_ptr_toy::~shared_ptr_toy()
-{
+shared_ptr_toy::~shared_ptr_toy() {
     reduce_count(true);
 }
 
